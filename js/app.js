@@ -1,9 +1,33 @@
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+var First = React.createClass({
+	componentDidMount: function() {},
+	render: function () {
+		return (
+			<table>
+				<tbody>
+					<tr>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+					</tr>
+					<tr>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+					</tr>
+					<tr>
+						<td>X</td>
+						<td>X</td>
+						<td>X</td>
+					</tr>
+				</tbody>
+			</table>
+		);
+	}
+});
 
 ReactDOM.render(
-  "<h1>Hello, world!</h1>",
-  document.getElementById('xo-example')
+  <First />,
+  document.getElementById('xo')
 );

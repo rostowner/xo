@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify js/app.js -o js/index.js"
+    "start": "browser-sync start --server --directory --files=\"./**/*.*\""
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,5 @@
     "url": "https://github.com/rostowner/xo/issues"
   },
   "homepage": "https://github.com/rostowner/xo#readme",
-  "devDependencies": {
-    "browserify": "^13.0.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "watchify": "^3.7.0"
-  }
+  "dependencies": {}
 }
