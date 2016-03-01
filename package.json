@@ -1,0 +1,22 @@
+{
+  "name": "xo",
+  "version": "1.0.0",
+  "description": "ox game - html",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify ./js/app.js -t babelify -o build/index.js",
+    "start": "browser-sync start --server --directory --files=\"./**/*.*\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rostowner/xo.git"
+  },
+  "author": "rostowner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rostowner/xo/issues"
+  },
+  "homepage": "https://github.com/rostowner/xo#readme",
+  "dependencies": {}
+}
