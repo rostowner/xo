@@ -5,12 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "watch": "watchify ./js/app.js -t babelify -o build/index.js",
     "start": "browser-sync start --server --directory --files=\"./**/*.*\""
-=======
-    "watch": "watchify js/app.js -o js/index.js"
->>>>>>> 467905f7e8295ead8b14f55e33959af42a9b024d
   },
   "repository": {
     "type": "git",
@@ -22,14 +17,5 @@
     "url": "https://github.com/rostowner/xo/issues"
   },
   "homepage": "https://github.com/rostowner/xo#readme",
-<<<<<<< HEAD
   "dependencies": {}
-=======
-  "devDependencies": {
-    "browserify": "^13.0.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "watchify": "^3.7.0"
-  }
->>>>>>> 467905f7e8295ead8b14f55e33959af42a9b024d
 }
