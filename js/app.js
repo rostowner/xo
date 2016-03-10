@@ -1,13 +1,19 @@
 'use strict';
 
+const cellStates = {
+	x: 'x',
+	o: 'o',
+	_: '_'
+};
+
 const Box = React.createClass({
 	getInitialState: function () {
 		return {
 			size: 3,
 			matrix: [
-				['x', 'x', 'x'], 
-				['x', 'x', 'x'], 
-				['x', 'x', 'x']
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._]
 			]
 		};
 	},
@@ -15,8 +21,8 @@ const Box = React.createClass({
 		const matrix = this.state.matrix;
 		return (<table>
 					<tbody>
-						{matrix.map(function(row){ 
-							return <Row cells={row} />; 
+						{matrix.map(function(row, index){ 
+							return <Row cells={row} row-index={index} />; 
 						})}
 					</tbody>
 				</table>
@@ -28,8 +34,8 @@ const Row = React.createClass({
 	render: function () {
 		const cells = this.props.cells;
 		return (<tr>
-				{cells.map(function(cell){
-					return <Cell item={cell} />;
+				{cells.map(function(cell, index){
+					return <Cell item={cell} cell-index={index} />;
 				})}
 			</tr>);
 	}
@@ -38,7 +44,7 @@ const Row = React.createClass({
 const Cell = React.createClass({
 	render: function () {
 		const item = this.props.item;
-		return (<td>{item}</td>);
+		return (<td>| {item} |</td>);
 	}
 });
 
