@@ -1,30 +1,50 @@
 'use strict';
 
-var Box = React.createClass({
+const cellStates = {
+	x: 'x',
+	o: 'o',
+	_: '_'
+};
+
+const Box = React.createClass({
 	getInitialState: function () {
 		return {
-			rows: [new Array(3), new Array(3), new Array(3)]
+			size: 3,
+			matrix: [
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._]
+			]
 		};
 	},
 	render: function () {
-		const r = this.props.rows.map(x => <Row item={x}/>);
-		return (
-			<table>
-				<tbody>
-					{r}
-				</tbody>
-			</table>
-		);
+		const matrix = this.state.matrix;
+		return (<table>
+					<tbody>
+						{matrix.map(function(row, index){ 
+							return <Row cells={row} row-index={index} />; 
+						})}
+					</tbody>
+				</table>
+			);
 	}
 });
 
-var Row = React.createClass({
+const Row = React.createClass({
 	render: function () {
-		return <tr>
-					<td>X</td>
-					<td>X</td>
-					<td>X</td>
-				</tr>
+		const cells = this.props.cells;
+		return (<tr>
+				{cells.map(function(cell, index){
+					return <Cell item={cell} cell-index={index} />;
+				})}
+			</tr>);
+	}
+});
+
+const Cell = React.createClass({
+	render: function () {
+		const item = this.props.item;
+		return (<td>| {item} |</td>);
 	}
 });
 
