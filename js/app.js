@@ -22,7 +22,7 @@ const Box = React.createClass({
 		return (<table>
 					<tbody>
 						{matrix.map(function(row, index){ 
-							return <Row cells={row} row-index={index} />; 
+							return <Row cells={row} rowindex={index} />; 
 						})}
 					</tbody>
 				</table>
@@ -33,9 +33,10 @@ const Box = React.createClass({
 const Row = React.createClass({
 	render: function () {
 		const cells = this.props.cells;
+		const rowIndex = this.props.rowindex;
 		return (<tr>
 				{cells.map(function(cell, index){
-					return <Cell item={cell} cell-index={index} />;
+					return <Cell item={cell} rowindex={rowIndex} cellindex={index} />;
 				})}
 			</tr>);
 	}
@@ -44,12 +45,14 @@ const Row = React.createClass({
 const Cell = React.createClass({
 	render: function () {
 		const item = this.props.item;
+		const rowIndex = this.props.rowindex;
+		const cellIndex = this.props.cellindex;
+
 		return (<td>| {item} |</td>);
 	}
 });
 
 ReactDOM.render(
-	const rows = this.state.rows;
-  <Box rows={rows} />,
+  <Box />,
   document.getElementById('xo')
 );
