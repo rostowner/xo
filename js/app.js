@@ -43,12 +43,15 @@ const Row = React.createClass({
 });
 
 const Cell = React.createClass({
+	hendlerOnClick: function (x, y) {
+		console.log(x, y);
+	},
 	render: function () {
 		const item = this.props.item;
 		const rowIndex = this.props.rowindex;
 		const cellIndex = this.props.cellindex;
 
-		return (<td>| {item} |</td>);
+		return (<td onClick={this.hendlerOnClick(rowIndex, cellIndex)}>| {item} |</td>);
 	}
 });
 
