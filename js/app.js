@@ -6,13 +6,27 @@ const cellStates = {
 	_: '_'
 };
 
-const getDefaultMatrix = function () {
-	// todo: add posibility to add any size array
-	return [
+const getDefaultMatrix = function (x) {
+	var arr = [];
+	var res = [];
+	if (x) {
+		for (var i = 0; i < x; i++) {
+			arr.push(new Array(x));
+		}
+		for (i = 0; i < x; i++) {
+			for (var y = 0; y < x; y++) {
+				arr[i][y] = cellStates._;
+			}
+		}
+		res = arr;
+	} else {
+		res = [
 				[cellStates._, cellStates._, cellStates._], 
 				[cellStates._, cellStates._, cellStates._], 
 				[cellStates._, cellStates._, cellStates._]
 			];
+	};
+	return res;
 	};
 
 const Box = React.createClass({
@@ -20,7 +34,7 @@ const Box = React.createClass({
 		return {
 			size: 3,
 			player: cellStates.x,
-			matrix: getDefaultMatrix()
+			matrix: getDefaultMatrix(3)
 		};
 	},
 	changePlayer: function () {
@@ -38,9 +52,14 @@ const Box = React.createClass({
 		this.setState({matrix: matrix});
 	},
 	restartAll: function () {
-		const matrix = getDefaultMatrix();
+		const matrix = getDefaultMatrix(this.state.size);
 		const player = cellStates.x;
 		this.setState({matrix: matrix, player: player});
+	},
+	setMatrixSize: function (matrixSize) {
+		const ms = matrixSize;
+		this.setState({size: ms});
+		this.restartAll();
 	},
 	render: function () {
 		// todo: add buttons Layer
@@ -55,6 +74,7 @@ const Box = React.createClass({
 				</table>
 				<Player changePlayer={this.changePlayer} player={this.state.player} />
 				<Restart restart={this.restartAll} />
+				<Size matrixSize={this.state.size} setMatrixSize={this.setMatrixSize} />
 			</div>
 			);
 	}
@@ -100,6 +120,20 @@ const Player = React.createClass({
 const Restart = React.createClass({
 	render: function () {
 		return (<button className="btn-sm btn-default" onClick={this.props.restart}>Restart</button>);
+	}
+});
+
+const Size = React.createClass({
+	setSize: function () {
+		const s = this.refs.sizem.value;
+		this.props.setMatrixSize(s);
+	},
+	render: function () {
+		return (<div>
+			<hr />
+			<input type="text" name="size" ref="sizem" defaultValue={this.props.matrixSize} />
+			<button onClick={this.setSize}>Set Size</button>
+			</div>);
 	}
 });
 
