@@ -7,6 +7,9 @@ const cellStates = {
 };
 
 const Box = React.createClass({
+	handlerOnClick: function (x, y) {
+		console.log(x, y);
+	},
 	getInitialState: function () {
 		return {
 			size: 3,
@@ -22,8 +25,8 @@ const Box = React.createClass({
 		return (<table>
 					<tbody>
 						{matrix.map(function(row, index){ 
-							return <Row cells={row} rowindex={index} />; 
-						})}
+							return <Row cells={row} handlerOnClick={this.handlerOnClick} rowindex={index} />; 
+						}, this)}
 					</tbody>
 				</table>
 			);
@@ -31,27 +34,31 @@ const Box = React.createClass({
 });
 
 const Row = React.createClass({
+	handlerOnClick: function (x, y) {
+		this.props.handlerOnClick(x, y);
+	},
 	render: function () {
 		const cells = this.props.cells;
 		const rowIndex = this.props.rowindex;
 		return (<tr>
 				{cells.map(function(cell, index){
-					return <Cell item={cell} rowindex={rowIndex} cellindex={index} />;
-				})}
+					return <Cell item={cell} handlerOnClick={this.handlerOnClick} rowindex={rowIndex} cellindex={index} />;
+				}, this)}
 			</tr>);
 	}
 });
 
 const Cell = React.createClass({
-	hendlerOnClick: function (x, y) {
-		console.log(x, y);
+	handlerOnClick: function () {
+		console.log('rowIndex', this.props.rowIndex);
+		this.props.handlerOnClick(this.props.rowIndex, this.props.cellIndex);
 	},
 	render: function () {
 		const item = this.props.item;
 		const rowIndex = this.props.rowindex;
 		const cellIndex = this.props.cellindex;
 
-		return (<td onClick={this.hendlerOnClick(rowIndex, cellIndex)}>| {item} |</td>);
+		return (<td onClick={this.handlerOnClick} rowIndex={rowIndex} cellIndex={cellIndex} >| {item} |</td>);
 	}
 });
 
