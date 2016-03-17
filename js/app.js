@@ -7,6 +7,7 @@ const cellStates = {
 };
 
 const getDefaultMatrix = function () {
+	// todo: add posibility to add any size array
 	return [
 				[cellStates._, cellStates._, cellStates._], 
 				[cellStates._, cellStates._, cellStates._], 
@@ -31,11 +32,9 @@ const Box = React.createClass({
 								? cellStates.x 
 								: cellStates.o;
 		var matrix = this.state.matrix;
-		console.log(matrix[x][y], playerSimbol, matrix);
 		matrix[x][y] = (matrix[x][y] == cellStates._)
 							? playerSimbol
 							: cellStates._;
-		console.log(matrix[x][y], playerSimbol, matrix);
 		this.setState({matrix: matrix});
 	},
 	restartAll: function () {
