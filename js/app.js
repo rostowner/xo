@@ -28,6 +28,15 @@ const Box = React.createClass({
 		matrix[x][y] = playerSimbol;
 		this.setState({matrix: matrix});
 	},
+	restartAll: function () {
+		const matrix = [
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._]
+			];
+		const player = cellStates.x;
+		this.setState({matrix: matrix, player: player});
+	},
 	render: function () {
 		const matrix = this.state.matrix;
 		return (<div>
@@ -39,6 +48,7 @@ const Box = React.createClass({
 					</tbody>
 				</table>
 				<Player changePlayer={this.changePlayer} player={this.state.player} />
+				<Restart restart={this.restartAll} />
 			</div>
 			);
 	}
@@ -72,15 +82,18 @@ const Cell = React.createClass({
 });
 
 const Player = React.createClass({
-	changePlayer: function () {
-		this.props.changePlayer();
-	},
 	render: function () {
 		const player = this.props.player;
 		return (<div>
 			<h1>Player: {player}</h1>
-			<button onClick={this.changePlayer}>Change Player</ button>
+			<button onClick={this.props.changePlayer}>Change Player</ button>
 			</div>);
+	}
+});
+
+const Restart = React.createClass({
+	render: function () {
+		return (<button onClick={this.props.restart}>Restart</button>);
 	}
 });
 
