@@ -20,12 +20,17 @@ const Box = React.createClass({
 			]
 		};
 	},
+	changeStateOfCell: function (x, y) {
+		var matrix = this.state.matrix;
+		matrix[x][y] = cellStates.x;
+		this.setState({matrix: matrix});
+	},
 	render: function () {
 		const matrix = this.state.matrix;
 		return (<table>
 					<tbody>
 						{matrix.map(function(row, index){ 
-							return <Row cells={row} handlerOnClick={this.handlerOnClick} rowindex={index} />; 
+							return <Row cells={row} changeStateOfCell={this.changeStateOfCell} rowindex={index} />; 
 						}, this)}
 					</tbody>
 				</table>
@@ -34,15 +39,15 @@ const Box = React.createClass({
 });
 
 const Row = React.createClass({
-	handlerOnClick: function (x, y) {
-		this.props.handlerOnClick(x, y);
+	rowCellOnClick: function (x, y) {
+		this.props.changeStateOfCell(x, y);
 	},
 	render: function () {
 		const cells = this.props.cells;
 		const rowIndex = this.props.rowindex;
 		return (<tr>
 				{cells.map(function(cell, index){
-					return <Cell item={cell} handlerOnClick={this.handlerOnClick} rowindex={rowIndex} cellindex={index} />;
+					return <Cell item={cell} rowCellOnClick={this.rowCellOnClick} rowindex={rowIndex} cellindex={index} />;
 				}, this)}
 			</tr>);
 	}
@@ -50,15 +55,13 @@ const Row = React.createClass({
 
 const Cell = React.createClass({
 	handlerOnClick: function () {
-		console.log('rowIndex', this.props.rowIndex);
-		this.props.handlerOnClick(this.props.rowIndex, this.props.cellIndex);
+		const x = this.props.rowindex;
+		const y = this.props.cellindex;
+		this.props.rowCellOnClick(x, y);
 	},
 	render: function () {
 		const item = this.props.item;
-		const rowIndex = this.props.rowindex;
-		const cellIndex = this.props.cellindex;
-
-		return (<td onClick={this.handlerOnClick} rowIndex={rowIndex} cellIndex={cellIndex} >| {item} |</td>);
+		return (<td onClick={this.handlerOnClick}>| {item} |</td>);
 	}
 });
 
