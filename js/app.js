@@ -38,9 +38,10 @@ const Box = React.createClass({
 		this.setState({matrix: matrix, player: player});
 	},
 	render: function () {
+		// todo: add button Layer
 		const matrix = this.state.matrix;
 		return (<div>
-				<table>
+				<table className="table table-bordered table-hover">
 					<tbody>
 						{matrix.map(function(row, index){ 
 							return <Row cells={row} changeStateOfCell={this.changeStateOfCell} rowindex={index} />; 
@@ -77,23 +78,23 @@ const Cell = React.createClass({
 	},
 	render: function () {
 		const item = this.props.item;
-		return (<td onClick={this.handlerOnClick}>| {item} |</td>);
+		return (<td onClick={this.handlerOnClick} className="text-center cell">{item}</td>);
 	}
 });
 
 const Player = React.createClass({
 	render: function () {
 		const player = this.props.player;
-		return (<div>
-			<h1>Player: {player}</h1>
-			<button onClick={this.props.changePlayer}>Change Player</ button>
-			</div>);
+		return (<span>
+			<p className="bg-primary">Player: {player}</p>
+			<button className="btn-lg btn-default" onClick={this.props.changePlayer}>Change Player</ button>
+			</span>);
 	}
 });
 
 const Restart = React.createClass({
 	render: function () {
-		return (<button onClick={this.props.restart}>Restart</button>);
+		return (<button className="btn-sm btn-default" onClick={this.props.restart}>Restart</button>);
 	}
 });
 
