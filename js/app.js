@@ -27,9 +27,15 @@ const Box = React.createClass({
 		this.setState({player: player});
 	},
 	changeStateOfCell: function (x, y) {
-		const playerSimbol = (this.state.player == cellStates.x) ? cellStates.x : cellStates.o;
+		const playerSimbol = (this.state.player == cellStates.x) 
+								? cellStates.x 
+								: cellStates.o;
 		var matrix = this.state.matrix;
-		matrix[x][y] = playerSimbol;
+		console.log(matrix[x][y], playerSimbol, matrix);
+		matrix[x][y] = (matrix[x][y] == cellStates._)
+							? playerSimbol
+							: cellStates._;
+		console.log(matrix[x][y], playerSimbol, matrix);
 		this.setState({matrix: matrix});
 	},
 	restartAll: function () {
@@ -38,7 +44,7 @@ const Box = React.createClass({
 		this.setState({matrix: matrix, player: player});
 	},
 	render: function () {
-		// todo: add button Layer
+		// todo: add buttons Layer
 		const matrix = this.state.matrix;
 		return (<div>
 				<table className="table table-bordered table-hover">
