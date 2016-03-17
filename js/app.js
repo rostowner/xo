@@ -6,16 +6,20 @@ const cellStates = {
 	_: '_'
 };
 
+const getDefaultMatrix = function () {
+	return [
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._], 
+				[cellStates._, cellStates._, cellStates._]
+			];
+	};
+
 const Box = React.createClass({
 	getInitialState: function () {
 		return {
 			size: 3,
 			player: cellStates.x,
-			matrix: [
-				[cellStates._, cellStates._, cellStates._], 
-				[cellStates._, cellStates._, cellStates._], 
-				[cellStates._, cellStates._, cellStates._]
-			]
+			matrix: getDefaultMatrix()
 		};
 	},
 	changePlayer: function () {
@@ -29,11 +33,7 @@ const Box = React.createClass({
 		this.setState({matrix: matrix});
 	},
 	restartAll: function () {
-		const matrix = [
-				[cellStates._, cellStates._, cellStates._], 
-				[cellStates._, cellStates._, cellStates._], 
-				[cellStates._, cellStates._, cellStates._]
-			];
+		const matrix = getDefaultMatrix();
 		const player = cellStates.x;
 		this.setState({matrix: matrix, player: player});
 	},
