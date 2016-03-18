@@ -51,16 +51,16 @@ const Box = React.createClass({
 							: cellStates._;
 		this.setState({matrix: matrix});
 	},
-	restartAll: function (size) {
+	restartAll: function () {
 		const matrix = getDefaultMatrix(this.state.size);
 		const player = cellStates.x;
-		const obj = (!size.type)? {matrix: matrix, player: player, size: size}
-							: {matrix: matrix, player: player};
+		const obj = {matrix: matrix, player: player};
+
 		this.setState(obj);
 	},
 	setMatrixSize: function (matrixSize) {
-		const ms = matrixSize;
-		this.restartAll(ms);
+		this.setState({size: matrixSize});
+		setTimeout(this.restartAll, 0);
 	},
 	render: function () {
 		// todo: add buttons Layer
