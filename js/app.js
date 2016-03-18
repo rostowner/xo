@@ -54,7 +54,7 @@ const Box = React.createClass({
 	restartAll: function (size) {
 		const matrix = getDefaultMatrix(this.state.size);
 		const player = cellStates.x;
-		const obj = (size)? {matrix: matrix, player: player, size: size}
+		const obj = (!size.type)? {matrix: matrix, player: player, size: size}
 							: {matrix: matrix, player: player};
 		this.setState(obj);
 	},
