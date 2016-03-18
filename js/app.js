@@ -112,28 +112,40 @@ const Player = React.createClass({
 		const player = this.props.player;
 		return (<span>
 			<p className="bg-primary">Player: {player}</p>
-			<button className="btn-lg btn-default" onClick={this.props.changePlayer}>Change Player</ button>
+			<button className="btn btn-primary" onClick={this.props.changePlayer}>Change Player</ button>
 			</span>);
 	}
 });
 
 const Restart = React.createClass({
 	render: function () {
-		return (<button className="btn-sm btn-default" onClick={this.props.restart}>Restart</button>);
+		return (<button className="btn btn-default" onClick={this.props.restart}>Restart</button>);
 	}
 });
 
 const Size = React.createClass({
-	setSize: function () {
+	setSize: function (e) {
+		e.preventDefault();
 		const s = this.refs.sizem.value;
 		this.props.setMatrixSize(s);
 	},
 	render: function () {
-		return (<div>
+		return (
+			<form className="form-inline">
 			<hr />
-			<input type="text" name="size" ref="sizem" defaultValue={this.props.matrixSize} />
-			<button onClick={this.setSize}>Set Size</button>
-			</div>);
+			  <div className="form-group">
+			    <label htmlFor="sizeId">Size</label>
+			    <input 	type="text" 
+			    		className="form-control" 
+			    		name="size" 
+			    		ref="sizem" 
+			    		defaultValue={this.props.matrixSize} 
+			    		id="sizeId" 
+			    		placeholder="Size" />
+			  </div>
+			  <button onClick={this.setSize} className="btn btn-default">Set Size</button>
+			</form>
+			);
 	}
 });
 
