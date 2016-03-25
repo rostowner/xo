@@ -1,0 +1,1 @@
+console.error("SyntaxError: D:/gitHub/xo/js/app.js: Unexpected token (72:10) while parsing file: D:\\gitHub\\xo\\js\\app.js");
