@@ -50,6 +50,7 @@ const Box = React.createClass({
 							? playerSimbol
 							: cellStates._;
 		this.setState({matrix: matrix});
+		this.changePlayer();
 	},
 	restartAll: function () {
 		const matrix = getDefaultMatrix(this.state.size);
